@@ -3,16 +3,14 @@ let percentage = 20
 
 
 
+let titleProject = prompt("Название проекта?");
+console.log("Название проекта:", titleProject);
 
+let screenValue = prompt("Шаблонные, с уникальным дизайном, с анимациями");
+console.log("Тип шаблона:", screenValue);
 
-let titleProject = prompt("Название проекта?")
-console.log (titleProject);
-
-let creensValue = prompt ("шаблонные, с уникальным дизайном, с анимациями")
-console.log (creensValue);
-
-let responsive = prompt ("Нужен ли респонсив на сайте")
-console.log(responsive); 
+let responsive = prompt("Нужен ли респонсив на сайте?");
+console.log("Респонсив:", responsive);
 
 let service = prompt ("Какой сервис нужен?")
 console.log ("Сервис:", service);
@@ -39,13 +37,12 @@ console.log ("Стоимость второго сервиса:", servicePrice2)
 // 1. Создай / Объяви функцию getAllServicePrices с помощью метода "function expression".
 // Функция должна возвращать стоимость всех дополнительных услуг.
 // Результат функции запиши в переменную allServicePrices.
-;
 
 const getAllServicePrices = function() {
   return servicePrice + servicePrice2;
 };
 let allServicePrices = getAllServicePrices() 
-console.log ("Общая стоимость дополнительных услуг", allServicePrices)
+console.log("Общая стоимость дополнительных услуг", allServicePrices)
 
 
 // 2  Создай функцию getFullPrice с помощью метода "function declaration".
@@ -57,8 +54,8 @@ function getFullPrice() {
 }
 let fullPrice = getFullPrice()
 console.log ("Общая стоимость проекта:", fullPrice);
-let percentageResult = +(fullPrice * (percentage / 100)); 
-console.log(percentageResult, "Процент подрядчика: "); 
+let percentageResult = fullPrice * (percentage / 100); 
+console.log("Процент подрядчика:", percentageResult); 
 
 
 // 3. Создай функцию getTitle.
@@ -77,7 +74,7 @@ function getTitle(titleProject) {
 }
 // Выводим отредактированное название
 let editedTitle = getTitle(titleProject);
-console.log(editedTitle);
+console.log("Отредактированное название:", editedTitle);
 
 
 //4. Создай функцию getServicePercentPrices.
@@ -85,18 +82,15 @@ console.log(editedTitle);
 //Результат функции запиши в переменную servicePercentPrice
 
 let getServicePercentPrices = function() {
-  return fullPrice - percentageResult;
+  return fullPrice * (1 - percentage / 100);
 };
 let servicePercentPrice = getServicePercentPrices();
-console.log(Math.ceil(servicePercentPrice), "Итоговая сумма проекта за вычетом % подрядчику");
-
-
-
+console.log("Итоговая сумма проекта за вычетом % подрядчику:", Math.ceil(servicePercentPrice));
 
 
 // Условия предоставления скидки:
 
-if(fullPrice > 50000)  {
+if (fullPrice > 50000)  {
     console.log ("Скидка в 10%"); 
 } else if (fullPrice > 20000 && fullPrice <= 50000) {
   console.log("Сделаем скидку 5%"); 
@@ -123,10 +117,9 @@ if(fullPrice > 50000)  {
 
 function getRollbackMessage(servicePercentPrice,discountPercentage) {
   if (servicePercentPrice <= 0 || discountPercentage < 0 || discountPercentage > 100) {
-    return "Некорректные данные. Пожалуйста, проверьте цену и процент скидки.";
-};
- // Расчет значения скидки
- getRollbackMessage(servicePercentPrice, 10);
+    console.log("Некорректные данные. Пожалуйста, проверьте цену и процент скидки.");
+    return null;
+}
 
 const discountValue = (servicePercentPrice * discountPercentage) / 100;
 const finalPrice = servicePercentPrice - discountValue;
@@ -136,9 +129,10 @@ return {
   finalPrice: finalPrice.toFixed(2)
 };
 }
+// коммент--
+let discountPercentage = fullPrice > 50000 ? 10 : fullPrice > 20000 ? 5 : 0;
+getRollbackMessage(servicePercentPrice, discountPercentage);
 
-
-
-
+// тест
 
 
